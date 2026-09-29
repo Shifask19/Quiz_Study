@@ -1,0 +1,372 @@
+COMPUTER SCIENCE FUNDAMENTALS — STUDY GUIDE
+===========================================
+SnapStudy Demo Study Material
+Topics: Database Management, Data Structures, Operating Systems, Computer Networks
+
+---
+
+CHAPTER 1: DATABASE MANAGEMENT SYSTEMS
+
+1.1 Introduction to Databases
+
+A database is an organized collection of structured information or data, typically stored electronically in a computer system. A Database Management System (DBMS) is software that interacts with end users, applications, and the database itself to capture and analyze data.
+
+Key characteristics of a database:
+- Data independence: The ability to modify the schema at one level without affecting the next higher level.
+- Data integrity: Accuracy and consistency of data across the database.
+- Data security: Mechanisms for preventing unauthorized access.
+- Concurrent access: Multiple users can access data simultaneously.
+
+1.2 Relational Model
+
+The relational model organizes data into tables (called relations). Each table has rows (tuples) and columns (attributes). The relational model was proposed by Edgar F. Codd in 1970.
+
+Important concepts:
+- Primary Key: A column or set of columns that uniquely identifies each row in a table.
+- Foreign Key: A column that references the primary key of another table, establishing a relationship between tables.
+- Candidate Key: A minimal set of attributes that can uniquely identify a tuple.
+- Super Key: A set of attributes that can uniquely identify a tuple (may have extra attributes).
+
+1.3 Database Normalization
+
+Normalization is the process of organizing a relational database to reduce data redundancy and improve data integrity. It was introduced by Edgar F. Codd.
+
+Normal Forms:
+
+First Normal Form (1NF):
+- All attributes must be atomic (indivisible).
+- Each column must contain values of a single type.
+- Each row must be unique.
+- Example: A table storing phone numbers must not have a column with multiple phone numbers in one cell.
+
+Second Normal Form (2NF):
+- Must be in 1NF.
+- Every non-key attribute must be fully functionally dependent on the entire primary key.
+- Eliminates partial dependencies.
+- Relevant when the primary key is composite.
+
+Third Normal Form (3NF):
+- Must be in 2NF.
+- No transitive dependencies: Non-key attributes must not depend on other non-key attributes.
+- Example: If Student table has StudentID → Department → DepartmentHead, then DepartmentHead depends transitively on StudentID through Department. Move Department information to a separate table.
+
+Boyce-Codd Normal Form (BCNF):
+- A stricter version of 3NF.
+- For every functional dependency X → Y, X must be a superkey.
+
+Benefits of normalization: Reduces redundancy, prevents update anomalies, insertion anomalies, and deletion anomalies.
+
+1.4 SQL — Structured Query Language
+
+SQL is the standard language for relational database management. It has several sub-languages:
+
+DDL (Data Definition Language): CREATE, ALTER, DROP, TRUNCATE
+DML (Data Manipulation Language): SELECT, INSERT, UPDATE, DELETE
+DCL (Data Control Language): GRANT, REVOKE
+TCL (Transaction Control Language): COMMIT, ROLLBACK, SAVEPOINT
+
+Important SQL Concepts:
+
+JOIN Operations:
+- INNER JOIN: Returns rows that have matching values in both tables.
+- LEFT JOIN: Returns all rows from the left table plus matching rows from the right table.
+- RIGHT JOIN: Returns all rows from the right table plus matching rows from the left table.
+- FULL OUTER JOIN: Returns all rows when there is a match in either table.
+
+Indexes:
+An index is a data structure that improves the speed of data retrieval. It works like a book index. Creating an index on a column speeds up SELECT queries but slows down INSERT, UPDATE, and DELETE operations because the index must be maintained.
+
+Types of indexes: B-tree index (default), Hash index, Bitmap index, Full-text index.
+
+Transactions and ACID Properties:
+- Atomicity: All operations in a transaction complete successfully, or none do.
+- Consistency: A transaction brings the database from one valid state to another.
+- Isolation: Concurrent transactions execute as if they were sequential.
+- Durability: Once a transaction is committed, changes persist even after system failure.
+
+---
+
+CHAPTER 2: DATA STRUCTURES AND ALGORITHMS
+
+2.1 Arrays
+
+An array is a linear data structure storing elements of the same type in contiguous memory locations. Arrays allow O(1) random access using an index.
+
+Operations and Time Complexity:
+- Access by index: O(1)
+- Search (unsorted): O(n)
+- Search (sorted, binary search): O(log n)
+- Insert at end: O(1) amortized
+- Insert at beginning or middle: O(n)
+- Delete: O(n)
+
+2.2 Linked Lists
+
+A linked list is a linear data structure where elements (nodes) are connected using pointers. Each node contains data and a pointer to the next node.
+
+Types:
+- Singly Linked List: Each node points to the next node.
+- Doubly Linked List: Each node points to both next and previous nodes.
+- Circular Linked List: Last node points back to the first node.
+
+Time Complexity:
+- Access: O(n)
+- Search: O(n)
+- Insert at beginning: O(1)
+- Insert at end: O(n) for singly linked, O(1) if tail pointer maintained
+- Delete: O(n) to find, O(1) to delete once found
+
+2.3 Stacks and Queues
+
+Stack (LIFO — Last In, First Out):
+Operations: push (add to top), pop (remove from top), peek (view top)
+Applications: Function call management, expression evaluation, undo operations, depth-first search (DFS).
+All operations: O(1)
+
+Queue (FIFO — First In, First Out):
+Operations: enqueue (add to rear), dequeue (remove from front)
+Applications: Process scheduling, breadth-first search (BFS), print spooling.
+All operations: O(1) with proper implementation
+
+2.4 Trees
+
+A tree is a hierarchical data structure with a root node and subtrees of children.
+
+Binary Tree: Each node has at most two children (left and right).
+
+Binary Search Tree (BST):
+- Left subtree contains nodes with values less than the parent.
+- Right subtree contains nodes with values greater than the parent.
+- Search, insert, delete: O(log n) average, O(n) worst case (unbalanced tree).
+
+Balanced BSTs (AVL Tree, Red-Black Tree):
+- Maintain O(log n) height, guaranteeing O(log n) for all operations.
+
+Tree Traversals:
+- Inorder (Left, Root, Right): Produces sorted output for BST.
+- Preorder (Root, Left, Right): Used for copying a tree.
+- Postorder (Left, Right, Root): Used for deleting a tree.
+- Level-order (BFS): Uses a queue.
+
+2.5 Sorting Algorithms
+
+Bubble Sort:
+- Compare adjacent elements and swap if out of order. Repeat.
+- Time: O(n²) worst/average, O(n) best (already sorted with optimization).
+- Space: O(1). Stable.
+
+Selection Sort:
+- Find minimum element, place at beginning. Repeat for remaining elements.
+- Time: O(n²) always. Space: O(1). Not stable.
+
+Insertion Sort:
+- Build sorted portion one element at a time.
+- Time: O(n²) worst/average, O(n) best. Space: O(1). Stable.
+- Efficient for small or nearly sorted arrays.
+
+Merge Sort:
+- Divide array into halves, recursively sort each half, merge.
+- Time: O(n log n) always. Space: O(n). Stable.
+- Preferred for linked lists and external sorting.
+
+Quick Sort:
+- Select a pivot, partition array so elements < pivot are left, > pivot are right. Recurse.
+- Time: O(n log n) average, O(n²) worst case (poor pivot selection).
+- Space: O(log n). Not stable. Fastest in practice for arrays.
+
+Heap Sort:
+- Build a max-heap, repeatedly extract maximum.
+- Time: O(n log n) always. Space: O(1). Not stable.
+
+2.6 Graph Algorithms
+
+A graph G = (V, E) consists of vertices V and edges E.
+
+Representations:
+- Adjacency Matrix: O(V²) space, O(1) edge lookup.
+- Adjacency List: O(V + E) space, O(degree) edge lookup.
+
+Breadth-First Search (BFS):
+- Explores all neighbors at the current depth before moving deeper.
+- Uses a queue. Time: O(V + E). Finds shortest path in unweighted graphs.
+
+Depth-First Search (DFS):
+- Explores as far as possible before backtracking.
+- Uses a stack (or recursion). Time: O(V + E).
+- Applications: Topological sort, cycle detection, connected components.
+
+Dijkstra's Algorithm:
+- Finds shortest paths from a source vertex to all others in weighted graphs with non-negative edges.
+- Time: O((V + E) log V) with a priority queue.
+
+---
+
+CHAPTER 3: OPERATING SYSTEMS
+
+3.1 Process Management
+
+A process is a program in execution. It includes the program code, current activity (program counter), stack, and data section.
+
+Process States:
+- New: Process is being created.
+- Ready: Process is waiting to be assigned to a processor.
+- Running: Instructions are being executed.
+- Waiting: Process is waiting for some event (I/O completion).
+- Terminated: Process has finished execution.
+
+3.2 CPU Scheduling
+
+CPU scheduling decides which process runs on the CPU.
+
+Scheduling Algorithms:
+
+First Come First Served (FCFS):
+- Processes are served in the order they arrive.
+- Simple but can cause the "convoy effect" (short processes wait behind long ones).
+- Non-preemptive.
+
+Shortest Job First (SJF):
+- The process with the smallest burst time runs first.
+- Optimal average waiting time but requires knowing burst times in advance.
+- Can be preemptive (Shortest Remaining Time First, SRTF).
+
+Round Robin (RR):
+- Each process gets a fixed time quantum. Preemptive.
+- Good for time-sharing systems.
+- Average waiting time depends on quantum size.
+
+Priority Scheduling:
+- Processes assigned priority; highest priority runs first.
+- Can cause starvation of low-priority processes (solved by aging).
+
+3.3 Memory Management
+
+Virtual Memory: Allows execution of processes not completely in memory by loading pages on demand.
+
+Paging:
+- Physical memory divided into fixed-size frames.
+- Logical memory divided into same-size pages.
+- Page table maps logical addresses to physical addresses.
+- Internal fragmentation possible (last page may not be fully used).
+
+Segmentation:
+- Memory divided into variable-size segments based on logical divisions.
+- External fragmentation possible.
+
+Page Replacement Algorithms:
+- FIFO: Replace the oldest page. Simple but can cause Belady's anomaly.
+- LRU (Least Recently Used): Replace the page not used for the longest time. Optimal in practice.
+- Optimal: Replace the page that won't be used for the longest future time. Theoretical best.
+
+3.4 Deadlocks
+
+A deadlock occurs when a set of processes are blocked, each waiting for a resource held by another process in the set.
+
+Four Necessary Conditions (Coffman's conditions):
+1. Mutual Exclusion: At least one resource is non-shareable.
+2. Hold and Wait: A process holds a resource while waiting for another.
+3. No Preemption: Resources cannot be forcibly taken.
+4. Circular Wait: A circular chain of processes exists, each waiting for the next.
+
+Deadlock Handling:
+- Prevention: Ensure at least one Coffman condition cannot hold.
+- Avoidance: Use Banker's Algorithm to ensure safe states.
+- Detection and Recovery: Allow deadlocks, detect and recover.
+- Ignore: Ostrich algorithm (used in practice for rare deadlocks).
+
+---
+
+CHAPTER 4: COMPUTER NETWORKS
+
+4.1 OSI Model
+
+The OSI (Open Systems Interconnection) model is a conceptual framework with 7 layers:
+
+Layer 7 — Application: HTTP, FTP, SMTP, DNS (user-facing services)
+Layer 6 — Presentation: Data format, encryption, compression
+Layer 5 — Session: Manages sessions and connections
+Layer 4 — Transport: Reliable delivery, error control (TCP, UDP)
+Layer 3 — Network: Routing, logical addressing (IP)
+Layer 2 — Data Link: MAC addressing, error detection (Ethernet, WiFi)
+Layer 1 — Physical: Bits transmitted over physical medium
+
+Mnemonic: "All People Seem To Need Data Processing" (top-down) or "Please Do Not Throw Sausage Pizza Away" (bottom-up).
+
+4.2 TCP vs UDP
+
+TCP (Transmission Control Protocol):
+- Connection-oriented: establishes connection via 3-way handshake (SYN, SYN-ACK, ACK).
+- Reliable: guarantees delivery, ordering, error checking.
+- Flow control and congestion control.
+- Higher overhead, slower than UDP.
+- Used for: HTTP, email, file transfer.
+
+UDP (User Datagram Protocol):
+- Connectionless: no handshake required.
+- Unreliable: no guarantee of delivery or ordering.
+- Lower overhead, faster than TCP.
+- Used for: streaming, gaming, DNS, VoIP.
+
+4.3 IP Addressing
+
+IPv4: 32-bit address written as four octets separated by dots (e.g., 192.168.1.1).
+- Approximately 4.3 billion unique addresses.
+- Private ranges: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16.
+
+IPv6: 128-bit address, written in hexadecimal (e.g., 2001:0db8:85a3::8a2e:0370:7334).
+- Virtually unlimited addresses.
+- Includes built-in security (IPSec).
+
+Subnetting: Divides a network into smaller sub-networks using a subnet mask.
+CIDR notation: 192.168.1.0/24 means 24 bits for network, 8 bits for hosts (254 usable hosts).
+
+4.4 HTTP and the Web
+
+HTTP (Hypertext Transfer Protocol):
+- Stateless, application-layer protocol.
+- Methods: GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS.
+- Status codes: 2xx (success), 3xx (redirect), 4xx (client error), 5xx (server error).
+
+HTTPS: HTTP with TLS/SSL encryption for secure communication.
+
+DNS (Domain Name System):
+- Translates human-readable domain names to IP addresses.
+- Hierarchical distributed system with root servers, TLD servers, and authoritative servers.
+- DNS record types: A (IPv4), AAAA (IPv6), CNAME (alias), MX (mail), TXT (text).
+
+---
+
+FORMULAS AND QUICK REFERENCE
+
+Time Complexity Summary:
+- Binary Search: O(log n)
+- Linear Search: O(n)
+- Bubble/Selection/Insertion Sort: O(n²)
+- Merge/Heap Sort: O(n log n)
+- Quick Sort (average): O(n log n)
+- Hash Table (average): O(1) insert/search/delete
+- BST (balanced): O(log n) insert/search/delete
+- Graph BFS/DFS: O(V + E)
+
+Memory Complexity:
+- Array: O(n)
+- Stack/Queue: O(n)
+- BST: O(n)
+- Graph (adjacency list): O(V + E)
+- Graph (adjacency matrix): O(V²)
+
+Key Database Formulas:
+- Selectivity = (number of qualifying rows) / (total rows)
+- Index selectivity determines whether to use index or full table scan.
+- Degree of relation = number of attributes (columns)
+- Cardinality of relation = number of tuples (rows)
+
+EXAM TIPS:
+1. Always check for Boyce-Codd Normal Form violations after achieving 3NF.
+2. In CPU scheduling, turnaround time = completion time - arrival time.
+3. Waiting time = turnaround time - burst time.
+4. In deadlock prevention, breaking "circular wait" is most practical.
+5. TCP 3-way handshake: SYN → SYN-ACK → ACK.
+6. Remember: Quick Sort is fastest in practice despite O(n²) worst case.
+7. Merge Sort is preferred for external sorting (data doesn't fit in memory).
+8. In networking, the Transport layer (Layer 4) provides end-to-end communication.

@@ -1,0 +1,49 @@
+# SnapStudy Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# ── Core Framework ─────────────────────────────────────────────
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+pydantic==2.10.3
+pydantic-settings==2.6.1
+
+# ── Database ───────────────────────────────────────────────────
+sqlalchemy==2.0.36
+
+# ── Document Processing ────────────────────────────────────────
+pymupdf==1.25.1          # PDF extraction (fitz)
+python-docx==1.1.2       # DOCX extraction
+python-pptx==1.0.0       # PPTX extraction
+
+# ── AI / Embeddings ────────────────────────────────────────────
+sentence-transformers==3.3.1   # Local embedding model (all-MiniLM-L6-v2)
+faiss-cpu==1.9.0               # Vector similarity search
+numpy==1.26.4
+httpx==0.28.1                  # HTTP client for Ollama API
+
+# ── Utilities ──────────────────────────────────────────────────
+python-multipart==0.0.20       # File upload support
+psutil==6.1.0                  # System metrics for benchmarking
+
+# ── Optional: Voice ────────────────────────────────────────────
+# Uncomment if VOICE_ENABLED=true
+# SpeechRecognition==3.11.0
+# pyttsx3==2.98
+
+# ── Optional: ONNX Runtime ─────────────────────────────────────
+# Uncomment for ONNX model support
+# onnxruntime==1.20.1
+# For Snapdragon DirectML acceleration (Windows):
+# onnxruntime-directml==1.20.1
+# For Qualcomm QNN execution provider (requires QNN SDK):
+# onnxruntime-qnn (contact Qualcomm for access)
+
+# ── Optional: Qualcomm AI Hub ──────────────────────────────────
+# Uncomment after registering at https://aihub.qualcomm.com
+# qai-hub==0.18.0
+# qai-hub-models==0.22.1
+
+# ── Development / Testing ──────────────────────────────────────
+pytest==8.3.4
+pytest-asyncio==0.24.0
+httpx==0.28.1              # Also used for testing FastAPI

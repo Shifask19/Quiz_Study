@@ -1,0 +1,65 @@
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ── Virtual environments ──────────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+
+# ── Environment / secrets ─────────────────────────────────────
+.env
+# Keep .env.example (it has no real secrets)
+!.env.example
+
+# ── Data / uploads / generated files ─────────────────────────
+data/uploads/
+data/vector_db/
+data/snapstudy.db
+tests/test_snapstudy.db
+tests/tmp_uploads/
+tests/tmp_vector_db/
+
+# Keep demo data
+!data/demo/
+
+# ── Node / frontend ───────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/tsconfig.tsbuildinfo
+frontend/tsconfig.node.tsbuildinfo
+
+# ── IDE / OS ──────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Model files (too large for git) ──────────────────────────
+models/*.onnx
+models/*.bin
+models/*.pt
+models/*.safetensors
+
+# ── Misc ──────────────────────────────────────────────────────
+*.log
+*.tmp
+.pytest_cache/
+.coverage
+htmlcov/
